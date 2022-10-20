@@ -22,7 +22,9 @@
 this tool will auto scan sql injection vulnerability in cms sim, Usually this vulnerability is on the school subdomain website (.sch.id)
 
 cms sim usually has a display like this
-![Screenshot at 2022-10-21 03-38-44](https://user-images.githubusercontent.com/51450260/196964275-636eeacd-bc35-4018-8384-fe2a2ad4f1d5.png)
+![Screenshot at 2022-10-21 03-38-44](https://user-images.githubusercontent.com/51450260/196965113-6a4de5f1-b9e1-4e6b-8c00-7ceb0a56c473.png)
+
 
 ## Screenshoot:
-![Screenshot at 2022-10-21 03-34-04](https://user-images.githubusercontent.com/51450260/196964534-baf53471-f1d4-452d-ab88-9c89d734c934.png)
+
+![Screenshot at 2022-10-21 03-34-04](https://user-images.githubusercontent.com/51450260/196965083-f2f7301a-49b6-4ba6-a1fd-7aec40c7f7f9.png)
