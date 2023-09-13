@@ -1,9 +1,4 @@
-import os
-import platform
-import time
-import requests
-import sys
-import re
+import os, platform, time, requests, sys, re, importlib
 from zipfile import ZipFile
 from urllib.parse import urlparse
 
@@ -14,12 +9,15 @@ class c:
 	g     = "\33[32m"
 	y    = "\33[33m"
 
-try:
-    import wget
-except ImportError:
-    print("[*] Module wget missing, try to install it for you :)")
-    os.system("pip3 install wget")
+def check_req(module_name, package_name):
+    try:
+        importlib.import_module(module_name)
+    except ImportError:
+        print("[!] Module " + module_name + " is missing")
+        os.system("pip3 install "+ package_name)
 
+check_req("wget", "wget")
+check_req("requests", "requests")
 
 try:
     os.mkdir('output')
