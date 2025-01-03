@@ -14,7 +14,7 @@
             )_/        \          /
            (@           `--------`
            
-           Coded by root@x-krypt0n-x | System of Pekalongan
+                         Coded by x0rr
                         SIM SQL INJECTION
 
 ```
@@ -24,7 +24,3 @@ this tool will auto scan sql injection vulnerability in cms sim, Usually this vu
 cms sim usually has a display like this
 ![Screenshot at 2022-10-21 03-38-44](https://user-images.githubusercontent.com/51450260/196965113-6a4de5f1-b9e1-4e6b-8c00-7ceb0a56c473.png)
 
-
-## Screenshoot:
-
-![Screenshot at 2022-10-21 03-34-04](https://user-images.githubusercontent.com/51450260/196965083-f2f7301a-49b6-4ba6-a1fd-7aec40c7f7f9.png)
